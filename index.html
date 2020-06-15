@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script 
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
+      crossorigin="anonymous"
+      >
+    </script>
+    <script src="quotes.js"></script>
+    <script>
+        window.onload = loading;
+        function loading() {  getNewQuote() };
+        const getNewQuote = () => {
+        let randomIndex = Math.floor(Math.random() * QUOTEBANK.length);
+        let randomQuote = QUOTEBANK[randomIndex].quote;
+        let randomAuthor = QUOTEBANK[randomIndex].author;
+
+        $(document).ready(function () {
+            $("#text").text(randomQuote);
+            $("#author").text(randomAuthor);
+            let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=";
+            let quoteApiFormat = randomQuote.replace(/\s/g, "%20");
+            let authorApiFormat = randomAuthor.replace(/\s/g, "%20");
+            twitterLink += quoteApiFormat;
+            twitterLink += " - " + authorApiFormat + " - ";
+            $("a").prop("href", twitterLink)
+        });
+        };
+        
+
+    </script>
+    <title>Hello, world!</title>
+  </head>
+  <body>
+      <div class="container">
+          <div class="row py-5">
+              <div class="col-md-8 offset-md-2">
+                <wrapper  id="quote-box">
+                    <div class="card">
+                        <div class="card-header">
+                          Quote
+                        </div>
+                        <div class="card-body">
+                          <blockquote class="blockquote mb-0">
+                            <p>
+                                <div  id="text"></div>
+                            </p>
+                            <footer class="blockquote-footer"><cite title="Source Title">
+                                <div  id="author"></div>
+                            </cite></footer>
+                          </blockquote><br />
+                          <button  id="new-quote" onclick="getNewQuote()" class="btn btn-info btn-lg btn-block">New Quote</button>
+                          <a href="#" id="tweet-quote" target="_blank" class="btn btn-secondary btn-lg btn-block">Tweet Quote</a>
+                        </div>
+                      </div>
+                </wrapper>
+              </div>
+          </div>
+      </div>
+    
+
+    
+    <script 
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" 
+      crossorigin="anonymous"
+      >
+    </script>
+    <script 
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" 
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" 
+      crossorigin="anonymous"
+      >
+    </script>
+    <script 
+      src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"
+      >
+    </script>
+  </body>
+</html>
